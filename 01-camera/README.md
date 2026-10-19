@@ -102,9 +102,9 @@ The first time, it'll ask whether you're sure you want to connect — type `yes`
 
 Then your password. **It won't show anything as you type it.** That's normal, not broken.
 
-> **On Windows,** `camera.local` sometimes doesn't resolve. Use the Pi's IP address instead — it's printed on the little screen when it boots.
+> **On Windows,** `camera.local` sometimes doesn't reach, you can try: ssh pi@camera
 
-Everything you type from here happens on the Pi, not on your laptop. You can tell by the prompt: it'll say `pi@camera` instead of your own name.
+Everything you type when you are ssh-ed in to the Pi will exist on the Pi, because you're connected to it via the terminal on your laptop. You can tell by the prompt: it'll say `pi@camera` in purple and blue instead of your own name.
 
 ---
 
