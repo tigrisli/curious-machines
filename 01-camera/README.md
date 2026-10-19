@@ -136,7 +136,6 @@ SSH back in after the reboot, then:
 
 ```bash
 sudo npm install -g @anthropic-ai/claude-code
-cd ~/camera
 claude
 ```
 
