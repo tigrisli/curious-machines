@@ -1,7 +1,5 @@
 # What can a camera capture beyond images?
 
-![Curious Machines](images/cover.jpg)
-
 What could a screen, a camera, and a tiny computer become in your hands?
 
 This first project is about giving your ideas physical form. You'll combine a Raspberry Pi, a touchscreen and a camera module (around £150 of parts), then use Claude Code to bring your own concepts to life. No soldering or coding experience is needed.
