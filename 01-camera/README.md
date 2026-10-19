@@ -6,11 +6,9 @@ What could a screen, a camera, and a tiny computer become in your hands?
 
 This first project is about giving your ideas physical form. You'll combine a Raspberry Pi, a touchscreen and a camera module (around £150 of parts), then use Claude Code to bring your own concepts to life. No soldering or coding experience is needed.
 
-It could be a camera that **pixelates** your face, one that **zooms into your hair** and confidently decides what style it is, or one that works like a **slit scan**, building the picture a line at a time so moving smears you across the frame.
+Just because we have the parts for a camera, doesn't mean it just has to take pictures - it could be a camera that **pixelates** your face, tells you have fast a Londoner is walking, or maybe it's a Berghain bouncer!
 
-The parts are the same every time. The only thing that changes is what you asked for.
-
-It's a chance to play, experiment, and surprise yourself with what you can bring to life.
+It's a chance to play, experiment, and surprise yourself with what your imagination can bring to life!
 
 ---
 
@@ -46,7 +44,7 @@ Before you hit write, open the settings (the gear icon) and fill in:
 - **Username and password** → you'll need these in a minute
 - **Your wifi name and password**
 
-Don't skip this screen! It's how you get into the Pi afterwards — there's no keyboard on it.
+Don't skip this screen! It's how you connect to your Pi from you computer.
 
 ---
 
@@ -127,10 +125,6 @@ Then:
 ```bash
 sudo reboot
 ```
-
-![Turn on the screen](images/turn-on-screen.jpg)
-
-If you'd rather do all of that by hand, the script is commented and every step is in [SETUP-BY-HAND.md](SETUP-BY-HAND.md).
 
 ---
 
