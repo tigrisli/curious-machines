@@ -128,9 +128,7 @@ sudo reboot
 
 ---
 
-## 5 · Put Claude Code on the Pi
-
-![Wake up Claude](images/wake-up-claude.jpg)
+## 5 · Install Claude Code in the Pi
 
 SSH back in after the reboot, then:
 
