@@ -130,7 +130,13 @@ sudo reboot
 
 ## 5 · Install Claude Code in the Pi
 
-SSH back in after the reboot, then:
+SSH back in after the reboot:
+
+```bash
+ssh pi@camera.local
+```
+
+then, install Claude Code:
 
 ```bash
 sudo npm install -g @anthropic-ai/claude-code
