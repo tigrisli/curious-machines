@@ -1,8 +1,12 @@
 # Taking your camera somewhere else
 
-Your Pi only knows the wifi you gave it when you flashed the card. Take it anywhere else and it won't find a network — and since there's no keyboard on it, you can't tell it about the new one.
+Your Pi only knows the wifi you gave it when you flashed the card in step 1. Take it anywhere else and it won't find a network — and since there's no keyboard on it, you can't tell it about the new one.
 
-The fix is to have the Pi make its own network when it can't find one it recognises.
+The fix is to have the Pi **make its own network** when it can't find one it recognises. Your laptop joins that instead, and you're back in.
+
+> **Do this before you leave the house.** Everything here needs you to already be connected to the Pi, which is exactly what you won't be once you've gone somewhere new.
+
+**You don't need this to finish the main guide** — it's for afterwards, when you want to take the camera out.
 
 ---
 
@@ -56,19 +60,4 @@ After the reboot the Pi joins your own wifi. Put your laptop back on the same ne
 
 > **One thing worth knowing:** while you're connected over the Pi's own hotspot there's no internet, so Claude Code won't work until you've added a real network.
 
----
-
-## Working on it once you're back in
-
-The camera starts automatically on boot, which gets in the way when you want to change it:
-
-```bash
-sudo systemctl stop camera     # stop it taking over
-claude --continue              # pick up where you left off
-```
-
-And when you're done:
-
-```bash
-sudo systemctl start camera
-```
+To change the camera once you're connected, follow the end of [step 11](README.md#11-make-it-portable).

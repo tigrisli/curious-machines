@@ -33,16 +33,6 @@ sudo apt-get update -qq
 sudo apt-get full-upgrade -y -qq
 
 # --------------------------------------------------------------------------
-say "Installing Node.js 22"
-if command -v node >/dev/null && [ "$(node -v | cut -c2- | cut -d. -f1)" -ge 18 ]; then
-  echo "  Already have $(node -v)"
-else
-  curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash - >/dev/null
-  sudo apt-get install -y -qq nodejs
-  echo "  Installed $(node -v)"
-fi
-
-# --------------------------------------------------------------------------
 # Claude Code is NOT installed here — you do that yourself, in one command,
 # once this script has finished. See the README.
 # --------------------------------------------------------------------------
@@ -132,21 +122,21 @@ sudo systemctl daemon-reload
 echo "  Turn it on later with: sudo systemctl enable --now camera"
 
 # --------------------------------------------------------------------------
-cat <<EOF
-
-${GREEN}=====================================================${NC}
+echo -e "\n${GREEN}=====================================================${NC}"
+cat <<'EOF'
  Done. Now reboot:
 
    sudo reboot
 
  Then ssh back in and install Claude Code:
 
-   sudo npm install -g @anthropic-ai/claude-code
-   cd ~/camera
+   curl -fsSL https://claude.ai/install.sh | bash
+
+ It ends with one more line to run. Run that, then start it:
+
    claude
 
- Log in when it asks, press 1 to trust the folder, then
- describe the camera you want.
-${GREEN}=====================================================${NC}
-
+ Log in when it asks and trust the folder. The guide takes
+ it from there.
 EOF
+echo -e "${GREEN}=====================================================${NC}\n"

@@ -2,7 +2,16 @@
 
 None of these are finished ideas. Pick one, get it working, then change something and see where it takes you.
 
-Type them into Claude Code while you're in your `~/camera` folder.
+**How to use this page:** get the basic camera from [step 9](README.md#9-make-a-camera) working first. Then pick one prompt, paste it into Claude Code, and run it. Each has a **"then break it"** underneath — that's the part where it stops being my idea and starts being yours.
+
+Type them into Claude Code while you're in your `~/camera` folder:
+
+```bash
+cd ~/camera
+claude --continue
+```
+
+`--continue` matters — it keeps the conversation that already knows what your camera does.
 
 ---
 
@@ -88,15 +97,3 @@ Type them into Claude Code while you're in your `~/camera` folder.
 **Describe what you actually saw.** "Too slow", "all grey", "it only works in the middle of the frame" — that's the most useful thing you can tell it.
 
 **When something works, ask it to explain one line to you.** That's how the afternoon turns into something you can do on your own next time.
-
----
-
-## Keeping it fast
-
-The Pi 4 is a small computer and the camera is a big sensor, so:
-
-- Preview at 640×480, stills no bigger than 2304×1296
-- Run any face detection on a downscaled copy, every few frames rather than every frame
-- Use OpenCV's haar cascades rather than anything heavier
-
-There's a `CLAUDE.md` in your `~/camera` folder that tells Claude all of this already, so you shouldn't have to think about it.
