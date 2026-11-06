@@ -4,15 +4,15 @@
 
 What could a screen, a camera, and a tiny computer become in your hands?
 
-This first project is about giving your ideas physical form. You'll combine a Raspberry Pi, a touchscreen and a camera module (around £160 of parts), then use Claude Code to bring your own concepts to life. No soldering or coding experience is needed.
+This first project is about giving your ideas physical form. You'll combine a Raspberry Pi, a touchscreen and a camera module (around £170 of parts), then use Claude Code to bring your own concepts to life. No soldering or coding experience is needed.
 
-Just because we have the parts for a camera, doesn't mean it just has to take pictures - it could be a camera that **pixelates** your face, draws sound frequencies of what it sees, or tell you if you can get into a certain Berlin club or not!
+Just because we have the parts for a camera, doesn't mean it just has to take pictures - it could be a camera that **pixelates** your face, draws sound frequencies of what it sees, or tells you if you can get into a certain Berlin club or not!
 
 It's a chance to play, experiment, and surprise yourself with what your imagination can bring to life!
 
 **About 90 minutes** start to finish, and most of it will be waiting while the Pi installs packages.
 
-So gratefule to Anthropic, the team behind [Claude](http://clau.de/tigrisli) for sponsoring this series, and letting me put together these projects and open-source them! <3
+So grateful to Anthropic, the team behind [Claude](http://clau.de/tigrisli) for sponsoring this series, and letting me put together these projects and open-source them! <3
 
 ## What you need
 
@@ -30,9 +30,9 @@ So gratefule to Anthropic, the team behind [Claude](http://clau.de/tigrisli) for
 - [LiPo battery HAT](https://thepihut.com/products/lipo-battery-hat-for-raspberry-pi) (optional for portability): £18
 - 32GB microSD card: £19
 - [USB-C power supply](https://thepihut.com/products/raspberry-pi-psu-uk?variant=20064070303806) (5V/3A): £8
-  - or USB-C cable into your laptop 
+  - or USB-C cable into your laptop, though many laptop ports can't supply 3A, so it may show low-power warnings or crash
 
-Prices are rough estimates as Raspberry Pi ad SD card prices have been rising, so check before you order.
+Prices are rough estimates as Raspberry Pi and SD card prices have been rising, so check before you order.
 
 Any Raspberry Pi camera module works. The setup script is made for this Waveshare screen, so a different screen needs its own settings in `setup.sh`.
 
