@@ -6,11 +6,13 @@ What could a screen, a camera, and a tiny computer become in your hands?
 
 This first project is about giving your ideas physical form. You'll combine a Raspberry Pi, a touchscreen and a camera module (around £160 of parts), then use Claude Code to bring your own concepts to life. No soldering or coding experience is needed.
 
-Just because we have the parts for a camera, doesn't mean it just has to take pictures - it could be a camera that **pixelates** your face, tells you how fast a Londoner is walking, or maybe it's a Berghain bouncer!
+Just because we have the parts for a camera, doesn't mean it just has to take pictures - it could be a camera that **pixelates** your face, draws sound frequencies of what it sees, or tell you if you can get into a certain Berlin club or not!
 
 It's a chance to play, experiment, and surprise yourself with what your imagination can bring to life!
 
-**About 90 minutes** start to finish, and roughly half of that is waiting while the Pi installs things.
+**About 90 minutes** start to finish, and most of it will be waiting while the Pi installs packages.
+
+So gratefule to Anthropic, the team behind [Claude](http://clau.de/tigrisli) for sponsoring this series, and letting me put together these projects and open-source them! <3
 
 ## What you need
 
@@ -20,14 +22,17 @@ It's a chance to play, experiment, and surprise yourself with what your imaginat
 
 **Parts**
 
-- Raspberry Pi 4 (4GB recommended, 2GB works): £65+
-- Waveshare 2.8" DPI touchscreen (480×640): £34
-- Raspberry Pi Camera Module 3: £25
-- LiPo battery HAT (optional): £18
-- 32GB microSD card: £9
-- USB-C power supply (5V/3A): £9
+- [Raspberry Pi 4](https://thepihut.com/products/raspberry-pi-4-model-b?variant=20064052674622) (4GB recommended, 2GB works): £65+
+- [Waveshare 2.8" DPI touchscreen](https://thepihut.com/products/2-8-capacitive-ips-lcd-touchscreen-for-raspberry-pi-480x640) (480×640): £34
+- [Raspberry Pi Camera Module 3](https://thepihut.com/products/raspberry-pi-camera-module-3?variant=42305752039619): £25
+  - or [Raspberry Pi High Quality Camera](https://thepihut.com/products/raspberry-pi-high-quality-camera-module): £48
+  - and you'll need to buy a [Raspberry Pi High Quality Camera Lens](https://thepihut.com/products/raspberry-pi-high-quality-camera-lens) to connect to it: £24
+- [LiPo battery HAT](https://thepihut.com/products/lipo-battery-hat-for-raspberry-pi) (optional for portability): £18
+- 32GB microSD card: £19
+- [USB-C power supply](https://thepihut.com/products/raspberry-pi-psu-uk?variant=20064070303806) (5V/3A): £8
+  - or USB-C cable into your laptop 
 
-Prices are rough, and Pi prices have been rising, so check before you order.
+Prices are rough estimates as Raspberry Pi ad SD card prices have been rising, so check before you order.
 
 Any Raspberry Pi camera module works. The setup script is made for this Waveshare screen, so a different screen needs its own settings in `setup.sh`.
 
@@ -45,11 +50,7 @@ Any Raspberry Pi camera module works. The setup script is made for this Waveshar
 
 ## 1. Flash the SD card
 
-![Pi Imager: choose Raspberry Pi OS 64-bit](images/flash-pi-os.jpg)
-
-This erases the card.
-
-Download [Raspberry Pi Imager](https://www.raspberrypi.com/software/) if you don't have it yet. Open it and fill in each screen, clicking **NEXT** to move on.
+Download [Raspberry Pi Imager](https://www.raspberrypi.com/software/) to flash the Pi OS software onto the SD card.
 
 **Device:** choose Raspberry Pi 4.
 
