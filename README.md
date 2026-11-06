@@ -1,10 +1,8 @@
 # Curious Machines
 
-**Building hardware with Claude Code**
+**Building hardware with [Claude Code](http://clau.de/tigrisli)**
 
-What could a screen, a camera, and a tiny computer become in your hands?
-
-This is a series about giving your ideas physical form. Each project starts with a small pile of parts and playful experimentation to explore new concepts and let your imagination run free! We'll be stacking hardware together and implementing Claude Code into our Raspberry Pis.
+This is a nseries about giving your ideas physical form. Each project starts with a small pile of parts and playful experimentation to explore new concepts and let your imagination run free! We'll be stacking hardware together and implementing Claude Code into our Raspberry Pis.
 
 Every guide here is meant to be a starting point for you to build on, break, and make into something of your own!
 
