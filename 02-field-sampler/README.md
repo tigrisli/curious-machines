@@ -25,16 +25,16 @@ Thanks to Anthropic, the team behind [Claude](http://clau.de/tigrisli), for spon
 
 ### Parts
 
-- [Raspberry Pi Zero 2 **WH**](https://thepihut.com/products/raspberry-pi-zero-2-w) — choose the version with the GPIO header already attached: £22
-- [ReSpeaker 2-Mics pHAT](https://thepihut.com/products/respeaker-2-mics-phat) — two microphones, a speaker output and a button: £12
-- [Grove 12-key capacitive touch sensor](https://thepihut.com/products/grove-12-key-capacitive-i2c-touch-sensor-v3) — twelve touch pads: £7
-- [Grove Encoder](https://thepihut.com/products/grove-encoder) — a rotary control: £5
-- [Pimoroni 1.12" mono OLED breakout](https://shop.pimoroni.com/products/1-12-oled-breakout) — a small screen: £17
-- [Blinkt!](https://shop.pimoroni.com/products/blinkt) — eight RGB lights: £6
-- [GPIO splitter, 1 to 3](https://www.amazon.co.uk/dp/B0HG8FCZFT) — connects the boards to the Pi’s GPIO header, and comes with standoffs: £8
-- [Mini speaker, 4Ω 3W with JST-PH connector](https://shop.pimoroni.com/products/mini-speaker-4-3w-with-jst-ph-connector) — plugs straight into the ReSpeaker, and has M2.5 mounting holes 32.5mm apart if you want to fix it to something: £6
+- [Raspberry Pi Zero 2 **WH**](https://thepihut.com/products/raspberry-pi-zero-2-w) (choose the version with the GPIO header already attached): £22
+- [ReSpeaker 2-Mics pHAT](https://thepihut.com/products/respeaker-2-mics-phat) (two microphones, a speaker output and a button): £12
+- [Grove 12-key capacitive touch sensor](https://thepihut.com/products/grove-12-key-capacitive-i2c-touch-sensor-v3) (twelve touch pads): £7
+- [Grove Encoder](https://thepihut.com/products/grove-encoder) (a rotary control): £5
+- [Pimoroni 1.12" mono OLED breakout](https://shop.pimoroni.com/products/1-12-oled-breakout) (a small screen): £17
+- [Blinkt!](https://shop.pimoroni.com/products/blinkt) (eight RGB lights): £6
+- [GPIO splitter, 1 to 3](https://www.amazon.co.uk/dp/B0HG8FCZFT) (connects the boards to the Pi’s GPIO header, and comes with standoffs): £8
+- [Mini speaker, 4Ω 3W with JST-PH connector](https://shop.pimoroni.com/products/mini-speaker-4-3w-with-jst-ph-connector) (plugs straight into the ReSpeaker, and has M2.5 mounting holes 32.5mm apart if you want to fix it to something): £6
 - microSD card, 32GB or bigger: £15
-- Micro-USB power supply — the Zero uses micro-USB: £8
+- Micro-USB power supply (the Zero uses micro-USB): £8
 - M2.5 standoffs and screws, usually included with the splitter
 
 > **Check your ReSpeaker version before you start.** This guide uses **v2**. The v1 board has a different audio chip and needs a different driver. [Seeed’s wiki](https://wiki.seeedstudio.com/ReSpeaker_2_Mics_Pi_HAT/) explains how to identify your board.
@@ -60,11 +60,11 @@ Here’s how the connections are shared. GPIO numbers in this guide use **BCM nu
 
 | Part | How it connects | Pins | Address |
 |---|---|---|---|
-| ReSpeaker | onto the splitter | I2S (18, 19, 20, 21), button on 17 | — |
+| ReSpeaker | onto the splitter | I2S (18, 19, 20, 21), button on 17 | n/a |
 | Touch pads | Grove **I2C** socket on the ReSpeaker | I2C (2, 3) | 0x5b |
-| Encoder | Grove **digital** socket on the ReSpeaker | 12 and 13 | — |
+| Encoder | Grove **digital** socket on the ReSpeaker | 12 and 13 | n/a |
 | OLED | four jumper wires to the splitter | I2C (2, 3) | 0x3c |
-| Blinkt! | onto the splitter | 23 and 24 | — |
+| Blinkt! | onto the splitter | 23 and 24 | n/a |
 
 The touch pads and screen share the two I2C signal wires. Each has its own address, which lets the Pi communicate with them separately.
 
@@ -271,7 +271,7 @@ Press **F3** for the Playback controls. Then use **left and right arrows** to mo
 
 Continue moving right to check for controls beyond the edge of the window.
 
-If a control shows **MM** at the bottom it's muted — press **M** to switch it to **OO**.
+If a control shows **MM** at the bottom it's muted. Press **M** to switch it to **OO**.
 
 Press **Esc** to exit, then save the settings so they persist after a reboot:
 
@@ -325,7 +325,7 @@ python3 ~/sampler/test-screen.py
 
 The screen should show a white border with **FIELD SAMPLER** in the centre.
 
-**If nothing appears**, open the file and change `ADDRESS = 0x3C` to `0x3D` — some boards ship with the other address set. **If the picture isn't the way up you want it**, change `ROTATE` — `0`, `1`, `2` and `3` are 0, 90, 180 and 270 degrees clockwise.
+**If nothing appears**, open the file and change `ADDRESS = 0x3C` to `0x3D`. Some boards ship with the other address set. **If the picture isn't the way up you want it**, change `ROTATE`. The values `0`, `1`, `2` and `3` are 0, 90, 180 and 270 degrees clockwise.
 
 ```bash
 nano ~/sampler/test-screen.py
@@ -343,7 +343,7 @@ python3 ~/sampler/test-pads.py
 
 Touch each pad in turn. You should see `pad 0` through to `pad 11`.
 
-Make a note of which physical pad gives which number — the order may not be what you'd guess from looking at the board, and you'll want to know when you're deciding what each one does.
+Make a note of which physical pad gives which number. The order may not be what you'd guess from looking at the board, and you'll want to know when you're deciding what each one does.
 
 `Ctrl+C` to stop.
 
@@ -369,7 +369,7 @@ That's every part tested. Now for the software.
 
 ## 15. Install Claude Code on your laptop
 
-Open a new terminal **on your laptop** — not one connected to the Pi — and install Claude Code:
+Open a new terminal **on your laptop**, not one connected to the Pi, and install Claude Code:
 
 ```bash
 curl -fsSL https://claude.ai/install.sh | bash
@@ -377,7 +377,7 @@ curl -fsSL https://claude.ai/install.sh | bash
 
 If Claude Code is already installed, you can skip that.
 
-**On macOS you'll probably need one more line.** The installer puts `claude` in `~/.local/bin`, which isn't somewhere the shell looks by default — so you get `command not found` straight after it says the install worked. Add it to your path:
+**On macOS you'll probably need one more line.** The installer puts `claude` in `~/.local/bin`, which isn't somewhere the shell looks by default, so you get `command not found` straight after it says the install worked. Add it to your path:
 
 ```bash
 echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
@@ -395,7 +395,7 @@ claude --version
 
 If that prints a version number you're set. The installer tells you the same thing in its setup notes, but it's easy to miss under the "Installation complete" message.
 
-Don't start Claude yet — there's some setup to do first, and it's easier outside a running session.
+Don't start Claude yet. There's some setup to do first, and it's easier outside a running session.
 
 ## 16. Set up access to the Pi
 
@@ -407,7 +407,7 @@ Still on your laptop, first check whether you already have an SSH key:
 ls ~/.ssh/*.pub
 ```
 
-**If that lists anything**, you have a key already — skip the next command and go straight to `ssh-copy-id`.
+**If that lists anything**, you have a key already. Skip the next command and go straight to `ssh-copy-id`.
 
 **If it says "No such file or directory"**, make one:
 
@@ -415,7 +415,7 @@ ls ~/.ssh/*.pub
 ssh-keygen -t ed25519
 ```
 
-> Only run `ssh-keygen` if you don't already have a key. If you do and you run it anyway, it offers to overwrite — and saying yes would lock you out of anything else using that key, GitHub included.
+> Only run `ssh-keygen` if you don't already have a key. If you do and you run it anyway, it offers to overwrite, and saying yes would lock you out of anything else using that key, GitHub included.
 
 Then copy it to the Pi:
 
@@ -442,7 +442,7 @@ cd ~/field-sampler
 
 And create a file in it called `CLAUDE.md`. This is what tells Claude about the hardware and how to deploy to it.
 
-Paste this whole block into the terminal at once — it's a single command, so it won't get mangled the way a list of them would:
+Paste this whole block into the terminal at once. It's a single command, so it won't get mangled the way a list of them would:
 
 ```bash
 cat > ~/field-sampler/CLAUDE.md <<'EOF'
@@ -461,7 +461,7 @@ Hardware on the Pi:
   Button on GPIO17.
 - Grove MPR121 capacitive touch, 12 pads, I2C 0x5B.
 - Pimoroni 1.12" OLED, 128x128 mono, I2C 0x3C. Drive it with luma.oled's
-  `sh1106` class at width=128, height=128, rotate=2.
+  `sh1106` class at width=128, height=128, rotate=1.
 - Grove rotary encoder on GPIO12 and GPIO13. No push switch.
 - Pimoroni Blinkt!, 8 APA102 RGB LEDs, GPIO23 and GPIO24.
   Use the `blinkt` python library.
@@ -481,7 +481,7 @@ Keep in mind:
 EOF
 ```
 
-**If your tests gave different values**, edit them in afterwards — the audio card number from step 10, or the pad address from step 13:
+**If your tests gave different values** (the audio card number from step 10, or the pad address from step 13), edit them in afterwards:
 
 ```bash
 nano ~/field-sampler/CLAUDE.md
@@ -501,6 +501,19 @@ claude
 Follow the prompts to sign in with your Claude account and trust the folder.
 
 Then describe how you want the sampler to work. Ask Claude to write the code, deploy it to the Pi and run it so you can test the controls.
+
+**How the code gets sent from your computer to the Pi**
+
+You won't type these, but it's worth knowing what's happening. Claude writes the file on your laptop, then runs two commands from the `CLAUDE.md` you just made, one to copy the folder over, one to run it on the Pi:
+
+```bash
+rsync -av --exclude '.git' ./ pi@field-sampler.local:~/sampler/
+ssh pi@field-sampler.local 'cd ~/sampler && python sampler.py'
+```
+
+That's the whole mechanism. No agent on the Pi, nothing clever, just a file copy and a remote command, which is why the SSH key in step 16 had to work before any of this.
+
+If a change doesn't seem to take effect, that's the first thing to check: run them yourself and see what happens, or look at what's actually on the device with `ssh pi@field-sampler.local 'ls -la ~/sampler/'`.
 
 Ask for the script to be called `sampler.py`, because the later steps look for that name.
 

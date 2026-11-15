@@ -77,7 +77,7 @@ make the pads play their sound backwards when I turn the encoder past halfway
 **Decay**
 
 ```
-every time a pad is played, degrade its sound slightly — a little more
+every time a pad is played, degrade its sound slightly, a little more
 noise, a little less top end. after twenty plays it should be barely
 recognisable
 ```
@@ -107,7 +107,7 @@ on each pad, so I can rearrange it by tapping
 **Timestamped**
 
 ```
-show on the OLED when each sample was recorded — the time and how long ago.
+show on the OLED when each sample was recorded, the time and how long ago.
 "gravel, 14:32, two hours ago"
 ```
 

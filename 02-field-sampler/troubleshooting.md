@@ -8,7 +8,7 @@ Real problems from building this, and what fixed them.
 
 **`ssh: connect to host field-sampler.local port 22: Connection refused`**
 
-Something answered but SSH isn't running yet. Usually it's still booting — wait 30 seconds and try again.
+Something answered but SSH isn't running yet. Usually it's still booting. Wait 30 seconds and try again.
 
 **`ping: cannot resolve field-sampler.local: Unknown host`**
 
@@ -28,7 +28,7 @@ The IP always works, even when the name doesn't.
 
 **Nothing shows when you type your password**
 
-That's how SSH works — no dots, no stars, nothing moves. Type it and press enter.
+That's how SSH works, no dots, no stars, nothing moves. Type it and press enter.
 
 ---
 
@@ -36,7 +36,7 @@ That's how SSH works — no dots, no stars, nothing moves. Type it and press ent
 
 **A screen full of `No such file or directory`, one per line**
 
-You pasted several commands at once and the terminal joined them up. Run them **one at a time** — press enter, wait, then do the next. This is the single most common way this guide goes wrong.
+You pasted several commands at once and the terminal joined them up. Run them **one at a time**, press enter, wait, then do the next. This is the single most common way this guide goes wrong.
 
 **`-bash: git: command not found`**
 
@@ -96,7 +96,7 @@ Every output on this codec starts at zero. This is the most common "my board is 
 alsamixer -c 0
 ```
 
-Press **F3** for Playback. There's no control called "Speaker" — the ones that matter are **PCM**, **Line DAC**, **Line PGA**, **Line** and **HP**. Raise them all. Arrow right past HP in case there are more off-screen. **MM** at the bottom means muted; press **M**.
+Press **F3** for Playback. There's no control called "Speaker". The ones that matter are **PCM**, **Line DAC**, **Line PGA**, **Line** and **HP**. Raise them all. Arrow right past HP in case there are more off-screen. **MM** at the bottom means muted; press **M**.
 
 Then make it stick:
 
@@ -131,7 +131,7 @@ sudo reboot
 
 Check the pads are in the ReSpeaker's **I2C** Grove socket, not the digital one.
 
-Note the address is **0x5b**, not the 0x5a most MPR121 documentation assumes — the Grove board ties its address pin differently.
+Note the address is **0x5b**, not the 0x5a most MPR121 documentation assumes. The Grove board ties its address pin differently.
 
 **The screen draws, then goes blank a second later**
 
@@ -141,7 +141,7 @@ That's luma clearing the display when the script ends, which is its default. Set
 d.persist = True
 ```
 
-The test script does this already. Worth knowing when Claude writes your sampler — if the screen keeps blanking between actions, this is why.
+The test script does this already. Worth knowing when Claude writes your sampler: if the screen keeps blanking between actions, this is why.
 
 **`3c` is missing (OLED)**
 
@@ -179,7 +179,7 @@ sudo apt install -y python3-rpi-lgpio
 free -h
 ```
 
-If swap is heavily used, something is loading more than it should — usually samples being read from disk repeatedly rather than kept in memory. Tell Claude what you're seeing.
+If swap is heavily used, something is loading more than it should, usually samples being read from disk repeatedly rather than kept in memory. Tell Claude what you're seeing.
 
 **`sampler.service` won't start**
 
@@ -230,7 +230,7 @@ Check you can:
 ssh pi@field-sampler.local 'echo hello'
 ```
 
-If you can't, Claude can't either — fix the connection first, it's not a Claude problem.
+If you can't, Claude can't either. Fix the connection first, it isn't a Claude problem.
 
 **Changes don't seem to do anything**
 
