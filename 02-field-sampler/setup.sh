@@ -126,6 +126,8 @@ Keep these in mind when writing code here:
   so an interrupted save can never leave a broken file behind.
 - Wrap file loading in try/except — a bad file should be skipped,
   never crash the app on startup.
+- Set `d.persist = True` on the OLED device, or luma blanks the screen
+  every time a script exits.
 - Recordings go in ~/sampler/recordings.
 EOF
 cat > ~/sampler/test-screen.py <<'EOF'

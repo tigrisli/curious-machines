@@ -108,7 +108,7 @@ Without that last command the levels reset every reboot.
 
 **Still quiet with everything at 100**
 
-That's the hardware. The v2 board drives the JST socket directly without much amplification, so a small 8Ω speaker won't go loud. Either use the 3.5mm jack into a powered speaker, or add a small amplifier board between the codec and the speaker.
+That's the hardware. The v2 board drives the JST socket directly without much amplification, so a small speaker won't go very loud. Either use the 3.5mm jack into a powered speaker, or add a small amplifier board between the codec and the speaker.
 
 **Crackling or dropouts**
 
@@ -132,6 +132,16 @@ sudo reboot
 Check the pads are in the ReSpeaker's **I2C** Grove socket, not the digital one.
 
 Note the address is **0x5b**, not the 0x5a most MPR121 documentation assumes — the Grove board ties its address pin differently.
+
+**The screen draws, then goes blank a second later**
+
+That's luma clearing the display when the script ends, which is its default. Set `persist` on the device so it leaves the image up:
+
+```python
+d.persist = True
+```
+
+The test script does this already. Worth knowing when Claude writes your sampler — if the screen keeps blanking between actions, this is why.
 
 **`3c` is missing (OLED)**
 
