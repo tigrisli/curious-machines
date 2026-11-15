@@ -275,8 +275,6 @@ Start Claude Code:
 claude
 ```
 
-![Login to Claude](images/login-to-claude.jpg)
-
 **Choose a text style.** Use the up and down arrows, then press enter.
 
 ![Claude Code asking you to choose a text style](images/activate-claude-2.jpeg)
