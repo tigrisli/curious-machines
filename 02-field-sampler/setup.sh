@@ -57,20 +57,20 @@ sudo raspi-config nonint do_i2c 0
 
 # --------------------------------------------------------------------------
 say "Installing the audio and hardware libraries"
-sudo apt-get install -y -qq \
-  python3-numpy \
-  python3-pygame \
-  python3-smbus2 \
-  python3-pil \
-  python3-sounddevice \
-  python3-gpiozero \
-  python3-rpi-lgpio \
-  python3-rtmidi \
-  libportaudio2 \
-  alsa-utils
+# Package names move around between Raspberry Pi OS releases, so install
+# one at a time and carry on if any single one isn't available.
+for p in python3-numpy python3-pygame python3-smbus2 python3-pil \
+         python3-gpiozero python3-rpi-lgpio python3-rtmidi \
+         libportaudio2 alsa-utils; do
+  if sudo apt-get install -y -qq "$p" 2>/dev/null; then
+    echo "  $p"
+  else
+    warn "$p not available on this release — skipping"
+  fi
+done
 
-say "Installing the screen, touch and light libraries"
-$PIP luma.oled adafruit-circuitpython-mpr121 blinkt \
+say "Installing the screen, touch, light and audio libraries"
+$PIP luma.oled adafruit-circuitpython-mpr121 blinkt sounddevice \
   || warn "One of these didn't install — see troubleshooting.md"
 
 # --------------------------------------------------------------------------
