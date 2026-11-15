@@ -1,6 +1,6 @@
 # Build a portable sampler with live recording
 
-<!-- photo: the finished field sampler held in a hand, lights on -->
+![The field sampler held in a hand: touch pads, rotary encoder, Blinkt! lights, speaker and OLED screen](images/field-sampler-hero.jpg)
 
 **Record everyday sounds and play them back on twelve touch pads.**
 
@@ -21,7 +21,7 @@ Thanks to Anthropic, the team behind [Claude](http://clau.de/tigrisli), for spon
 
 ## What you need
 
-<!-- photo: all the parts laid out on the cutting mat -->
+<!-- photo parts.jpg: all the parts laid out on a cutting mat -->
 
 ### Parts
 
@@ -60,11 +60,11 @@ Here’s how the connections are shared. GPIO numbers in this guide use **BCM nu
 
 | Part | How it connects | Pins | Address |
 |---|---|---|---|
-| ReSpeaker | onto the splitter | I2S (18, 19, 20, 21), button on 17 | n/a |
+| ReSpeaker | onto the splitter | I2S (18, 19, 20, 21), button on 17 | – |
 | Touch pads | Grove **I2C** socket on the ReSpeaker | I2C (2, 3) | 0x5b |
-| Encoder | Grove **digital** socket on the ReSpeaker | 12 and 13 | n/a |
+| Encoder | Grove **digital** socket on the ReSpeaker | 12 and 13 | – |
 | OLED | four jumper wires to the splitter | I2C (2, 3) | 0x3c |
-| Blinkt! | onto the splitter | 23 and 24 | n/a |
+| Blinkt! | onto the splitter | 23 and 24 | – |
 
 The touch pads and screen share the two I2C signal wires. Each has its own address, which lets the Pi communicate with them separately.
 
@@ -74,29 +74,59 @@ The touch pads and screen share the two I2C signal wires. Each has its own addre
 
 Download [Raspberry Pi Imager](https://www.raspberrypi.com/software/).
 
-**Device:** Raspberry Pi Zero 2 W.
+**Device:** choose Raspberry Pi Zero 2 W.
 
 **OS:** go into **Raspberry Pi OS (other)** and choose **Raspberry Pi OS Lite (64-bit)**.
 
 Lite has no desktop interface, which leaves more of the Pi’s limited memory available for audio. The sampler uses its own OLED screen.
 
-**Storage:** your SD card.
+**Storage:** choose your SD card.
 
-**Hostname:** `field-sampler`.
+**Hostname:** type `field-sampler`.
 
-**User:** `pi` and a password you'll remember.
+**Localisation:** choose your capital city. Imager fills in the time zone and keyboard layout for you.
 
-**Wi-Fi:** enter your network name and password. This guide uses Wi-Fi to connect your laptop to the Pi.
+**User:** type the username `pi` and a password you'll remember.
 
-**Remote access:** enable SSH and choose password authentication.
+**Wi-Fi:** type your network name and password. This guide uses Wi-Fi to connect your laptop to the Pi.
 
-Click **Write** and wait for Imager to finish. Allow about 10 minutes.
+**Remote access:** turn on **Enable SSH**, then choose **Use password authentication**.
 
-<!-- photo: Pi Imager with field-sampler settings -->
+**Raspberry Pi Connect:** leave this switched off. You'll connect over SSH instead.
+
+**Write:** check the summary, click **WRITE**, then **I UNDERSTAND, ERASE AND WRITE**. When you see **Write complete!**, click **FINISH** and take out the SD card. Allow about 10 minutes.
+
+![Pi Imager device screen with Raspberry Pi Zero 2 W selected](images/pi-imager-setup-1.png)
+
+![Pi Imager operating system screen with Raspberry Pi OS (other) highlighted](images/pi-imager-setup-2.png)
+
+![Pi Imager Raspberry Pi OS (other) list with Raspberry Pi OS Lite 64-bit selected](images/pi-imager-setup-3.png)
+
+![Pi Imager storage screen with the SD card selected](images/pi-imager-setup-4.png)
+
+![Pi Imager hostname screen with field-sampler typed in](images/pi-imager-setup-5.png)
+
+![Pi Imager localisation screen with London selected](images/pi-imager-setup-6.png)
+
+<!-- screenshot pi-imager-setup-7.png: user screen, retake with the password hidden -->
+
+<!-- screenshot pi-imager-setup-8.png: Wi-Fi screen, retake with both password fields filled in -->
+
+![Pi Imager SSH screen with SSH on and password authentication selected](images/pi-imager-setup-9.png)
+
+![Pi Imager Raspberry Pi Connect screen with the switch off](images/pi-imager-setup-10.png)
+
+![Pi Imager summary screen listing the chosen settings](images/pi-imager-setup-11.png)
+
+<!-- screenshot pi-imager-setup-13.png: erase warning, retake once the dialog has fully opened -->
+
+![Pi Imager writing to the SD card with a progress bar](images/pi-imager-setup-14.png)
+
+<!-- screenshot pi-imager-setup-15.png: write complete screen with the FINISH button -->
 
 ## 2. Solder the OLED
 
-<!-- photo: the five-pin header going onto the OLED -->
+<!-- photo solder-oled.jpg: the five-pin header being soldered onto the OLED -->
 
 Use the **straight** header supplied with the screen. This lets you connect it with jumper wires and choose where to mount it.
 
@@ -111,7 +141,7 @@ If you’re using the Grove OLED, you can skip the soldering step. Check its con
 
 ## 3. Build the stack
 
-<!-- photo: the splitter going onto the Pi -->
+<!-- photo splitter-on-pi.jpg: the GPIO splitter being pressed onto the Pi -->
 
 Keep the Pi disconnected from power while you assemble and wire it.
 
@@ -120,13 +150,13 @@ Keep the Pi disconnected from power while you assemble and wire it.
 3. **Fit Blinkt! to the splitter.** It uses two GPIO signal pins, but sits on a full header.
 4. **Secure the boards with standoffs.** These support the stack and take strain off the pins.
 
-<!-- photo: the assembled stack from the side -->
+<!-- photo stack-side.jpg: the assembled stack seen from the side, with standoffs fitted -->
 
 Check the alignment from the side as well as from above. It’s easy to fit a board one row out.
 
 ## 4. Plug in the pads and the knob
 
-<!-- photo: grove cables going into the ReSpeaker -->
+<!-- photo grove-cables.jpg: grove cables from the touch pads and encoder plugged into the ReSpeaker -->
 
 Use the Grove cables supplied with the pads and encoder to connect them to the ReSpeaker:
 
@@ -137,7 +167,7 @@ Check the labels before connecting them. The sockets look alike, but serve diffe
 
 ## 5. Wire the screen
 
-<!-- photo: the OLED wired to the splitter -->
+<!-- photo oled-wiring.jpg: the OLED connected to the splitter with four jumper wires -->
 
 Connect the OLED to the splitter’s spare pins with four jumper wires:
 
@@ -154,7 +184,7 @@ The fourth pad is marked with a crossed-out circle, which means not connected. S
 
 ## 6. Connect the speaker and power on
 
-<!-- photo: speaker plugged into the JST socket -->
+<!-- photo speaker-jst.jpg: the speaker plugged into the ReSpeaker's JST socket -->
 
 1. Plug the speaker into the ReSpeaker’s JST socket.
 2. Insert the SD card into the Pi.
@@ -295,7 +325,7 @@ You should hear your recording through the speaker. If you don’t, check the ca
 
 ## 12. Test the screen
 
-<!-- photo: the OLED showing FIELD SAMPLER -->
+<!-- photo screen-test.jpg: the OLED showing FIELD SAMPLER inside a white border -->
 
 Give your user access to the hardware interfaces and install the packages used by the screen library. Run these commands one at a time:
 
@@ -335,7 +365,7 @@ Press `Ctrl+O`, then Enter to save, and `Ctrl+X` to exit. Run the test again to 
 
 ## 13. Test the pads
 
-<!-- photo: a finger on one of the touch pads -->
+<!-- photo touch-pads.jpg: a finger touching one of the twelve touch pads -->
 
 ```bash
 python3 ~/sampler/test-pads.py
