@@ -440,9 +440,12 @@ mkdir ~/field-sampler
 cd ~/field-sampler
 ```
 
-And create a file in it called `CLAUDE.md`. This is what tells Claude about the hardware and how to deploy to it. Update the audio card number and OLED address if your tests showed different values:
+And create a file in it called `CLAUDE.md`. This is what tells Claude about the hardware and how to deploy to it.
 
-```markdown
+Paste this whole block into the terminal at once — it's a single command, so it won't get mangled the way a list of them would:
+
+```bash
+cat > ~/field-sampler/CLAUDE.md <<'EOF'
 # Field Sampler
 
 The target device is a Raspberry Pi Zero 2 W at pi@field-sampler.local.
@@ -475,7 +478,16 @@ Keep in mind:
 - Set `d.persist = True` on the OLED device, or luma blanks the screen
   every time a script exits.
 - Recordings go in ~/sampler/recordings.
+EOF
 ```
+
+**If your tests gave different values**, edit them in afterwards — the audio card number from step 10, or the pad address from step 13:
+
+```bash
+nano ~/field-sampler/CLAUDE.md
+```
+
+Getting these right matters more than anything else in this step. Every bit of code Claude writes from here on depends on them.
 
 ## 17. Write the sampler software
 
