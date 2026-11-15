@@ -251,7 +251,7 @@ ssh pi@field-sampler.local
 aplay -l
 ```
 
-Look for **`seeed2micvoicec`** and note its card number. The examples below use **card 0**. If yours has a different number, update the audio commands and the `CLAUDE.md` file in step 15 to match.
+Look for **`seeed2micvoicec`** and note its card number. The examples below use **card 0**. If yours has a different number, update the audio commands and the `CLAUDE.md` file in step 16 to match.
 
 ## 11. Test the sound
 
@@ -333,26 +333,41 @@ nano ~/sampler/test-screen.py
 
 Press `Ctrl+O`, then Enter to save, and `Ctrl+X` to exit. Run the test again to check your changes.
 
-## 13. Check the pads
+## 13. Test the pads
 
-Scan the I2C bus to check that the Pi can see the touch controller:
+<!-- photo: a finger on one of the touch pads -->
+
+```bash
+python3 ~/sampler/test-pads.py
+```
+
+Touch each pad in turn. You should see `pad 0` through to `pad 11`.
+
+Make a note of which physical pad gives which number — the order may not be what you'd guess from looking at the board, and you'll want to know when you're deciding what each one does.
+
+`Ctrl+C` to stop.
+
+**If it can't find the controller**, scan the I2C bus to see what's there:
 
 ```bash
 i2cdetect -y 1
 ```
 
-<!-- photo: terminal showing i2cdetect output -->
+You're looking for `5b`. If it's missing, check the Grove cable is in the **I2C** socket. If you see `5a` instead, change `ADDRESS` in the test file to `0x5A` and use that value in `CLAUDE.md` later too.
 
-Look for these addresses in the grid:
+## 14. Test the knob
 
-- **5b** — the touch pads
-- **3c** — the OLED, or **3d** if your screen uses the alternative address
+```bash
+python3 ~/sampler/test-encoder.py
+```
 
-The encoder and Blinkt! won’t appear because they don’t use I2C. This scan checks that the touch controller is connected; you’ll test individual pad presses once the sampler code is running.
+Turn it. The count should go up one way and down the other.
 
-If `5b` is missing, check the Grove cable and make sure it’s connected to the **I2C** socket.
+`Ctrl+C` to stop.
 
-## 14. Install Claude Code on your laptop
+That's every part tested. Now for the software.
+
+## 15. Install Claude Code on your laptop
 
 Open a new terminal **on your laptop** — not one connected to the Pi — and install Claude Code:
 
@@ -370,7 +385,7 @@ claude
 
 Follow the prompts to sign in with your Claude account and trust the project folder. If Claude Code is already installed, you can skip the installation command.
 
-## 15. Set up access to the Pi
+## 16. Set up access to the Pi
 
 SSH keys let Claude connect to the Pi without asking for your Pi password each time. Open another terminal on your laptop for this setup:
 
@@ -427,7 +442,7 @@ Keep in mind:
 - Recordings go in ~/sampler/recordings.
 ```
 
-## 16. Write the sampler software
+## 17. Write the sampler software
 
 Return to Claude Code in your project folder and describe how you want the sampler to work. Ask Claude to write the code, deploy it to the Pi and run it so you can test the controls.
 
@@ -464,7 +479,7 @@ hold the button, then lets me play it back at twelve different pitches, one
 per pad, like a keyboard. the encoder changes how long each note rings for
 ```
 
-## 17. Change it
+## 18. Change it
 
 Once the basic controls work, you can add features or change how they behave. To return to your previous Claude session, run this from the project folder on your laptop:
 
@@ -491,7 +506,7 @@ show a waveform of each sound on the OLED when I tap its pad
 
 More ideas are in [prompts.md](prompts.md).
 
-## 18. Optional: use it as a USB MIDI controller
+## 19. Optional: use it as a USB MIDI controller
 
 You can also use the pads to control instruments in Ableton, Logic or other music software by setting up the Pi as a USB MIDI device. MIDI sends note and control messages; to copy the audio you’ve recorded, use the **Get your recordings** section below.
 
@@ -506,7 +521,7 @@ Then plug it in with a micro-USB cable, using the port marked **USB** rather tha
 
 This step is optional. The sampler can still record and play on its own.
 
-## 19. Take it outside
+## 20. Take it outside
 
 Once you’re happy with how it works, enable the sampler service so it starts automatically:
 

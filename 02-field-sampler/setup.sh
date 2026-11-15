@@ -147,6 +147,35 @@ dr.text((22, 66), "SAMPLER", fill=1)
 d.display(img)
 print("Drawn. Look at the screen.")
 EOF
+cat > ~/sampler/test-pads.py <<'EOF'
+# Prints a line each time you touch one of the twelve pads.
+import time
+import board, busio, adafruit_mpr121
+
+ADDRESS = 0x5B   # try 0x5A if this one isn't found
+
+i2c = busio.I2C(board.SCL, board.SDA)
+mpr = adafruit_mpr121.MPR121(i2c, address=ADDRESS)
+
+print("Touch the pads. Ctrl+C to stop.")
+while True:
+    for i in range(12):
+        if mpr[i].value:
+            print(f"pad {i}")
+    time.sleep(0.1)
+EOF
+
+cat > ~/sampler/test-encoder.py <<'EOF'
+# Counts up and down as you turn the knob.
+from gpiozero import RotaryEncoder
+from signal import pause
+
+enc = RotaryEncoder(12, 13, max_steps=0)
+enc.when_rotated = lambda: print(f"steps: {enc.steps}")
+
+print("Turn the knob. Ctrl+C to stop.")
+pause()
+EOF
 echo "  ~/sampler is ready"
 
 # --------------------------------------------------------------------------
