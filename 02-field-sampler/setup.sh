@@ -22,7 +22,7 @@ say()  { echo -e "\n${GREEN}==>${NC} $1"; }
 warn() { echo -e "${YELLOW}  ! ${NC}$1"; }
 die()  { echo -e "\n${RED}==> $1${NC}\n"; exit 1; }
 
-PIP="pip3 install --break-system-packages -q"
+PIP="pip3 install --break-system-packages --no-warn-script-location -q"
 
 # --------------------------------------------------------------------------
 say "Checking your Pi"
@@ -135,9 +135,10 @@ from luma.oled.device import sh1106
 from PIL import Image, ImageDraw
 
 ADDRESS = 0x3C   # try 0x3D if nothing appears
-ROTATE  = 2      # try 0 if the picture is upside down
+ROTATE  = 1      # 0, 1, 2, 3 = 0, 90, 180, 270 degrees clockwise
 
 d = sh1106(i2c(port=1, address=ADDRESS), width=128, height=128, rotate=ROTATE)
+d.persist = True   # leave the image up when the script ends
 img = Image.new("1", d.size)
 dr = ImageDraw.Draw(img)
 dr.rectangle((0, 0, 127, 127), outline=1)

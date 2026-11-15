@@ -325,7 +325,7 @@ python3 ~/sampler/test-screen.py
 
 The screen should show a white border with **FIELD SAMPLER** in the centre.
 
-**If nothing appears**, open the file and change `ADDRESS = 0x3C` to `0x3D` — some boards ship with the other address set. **If the picture is upside down**, change `ROTATE = 2` to `0`.
+**If nothing appears**, open the file and change `ADDRESS = 0x3C` to `0x3D` — some boards ship with the other address set. **If the picture isn't the way up you want it**, change `ROTATE` — `0`, `1`, `2` and `3` are 0, 90, 180 and 270 degrees clockwise.
 
 ```bash
 nano ~/sampler/test-screen.py
