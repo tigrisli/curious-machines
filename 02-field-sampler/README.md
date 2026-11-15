@@ -395,21 +395,13 @@ claude --version
 
 If that prints a version number you're set. The installer tells you the same thing in its setup notes, but it's easy to miss under the "Installation complete" message.
 
-Now make a folder for the project and start Claude there:
-
-```bash
-mkdir ~/field-sampler
-cd ~/field-sampler
-claude
-```
-
-Follow the prompts to sign in with your Claude account and trust the project folder.
+Don't start Claude yet — there's some setup to do first, and it's easier outside a running session.
 
 ## 16. Set up access to the Pi
 
-SSH keys let Claude connect to the Pi without asking for your Pi password each time. Open another terminal on your laptop for this setup:
+Claude needs to reach the Pi without being asked for a password every time, and it needs to know what hardware it's dealing with. Both are quicker to sort before you start it.
 
-First check whether you already have a key:
+Still on your laptop, first check whether you already have an SSH key:
 
 ```bash
 ls ~/.ssh/*.pub
@@ -441,7 +433,14 @@ ssh pi@field-sampler.local 'echo it works'
 
 You should see `it works` without a Pi password prompt. Resolve any connection or key issues before continuing.
 
-Create a file called `CLAUDE.md` in your laptop’s `field-sampler` folder. This gives Claude the hardware details and deployment commands. Update the audio card number and OLED address if your tests showed different values:
+Now make the project folder:
+
+```bash
+mkdir ~/field-sampler
+cd ~/field-sampler
+```
+
+And create a file in it called `CLAUDE.md`. This is what tells Claude about the hardware and how to deploy to it. Update the audio card number and OLED address if your tests showed different values:
 
 ```markdown
 # Field Sampler
@@ -480,7 +479,16 @@ Keep in mind:
 
 ## 17. Write the sampler software
 
-Return to Claude Code in your project folder and describe how you want the sampler to work. Ask Claude to write the code, deploy it to the Pi and run it so you can test the controls.
+Now start Claude, from inside the project folder so it can see your `CLAUDE.md`:
+
+```bash
+cd ~/field-sampler
+claude
+```
+
+Follow the prompts to sign in with your Claude account and trust the folder.
+
+Then describe how you want the sampler to work. Ask Claude to write the code, deploy it to the Pi and run it so you can test the controls.
 
 Ask for the script to be called `sampler.py`, because the later steps look for that name.
 
