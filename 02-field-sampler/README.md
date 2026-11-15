@@ -503,7 +503,17 @@ Hardware on the Pi:
 - ReSpeaker 2-Mics pHAT v2. Audio in and out is ALSA card 0,
   "seeed2micvoicec". Use plughw:0,0 at 48000Hz, 16-bit, stereo.
   Button on GPIO17.
-- Grove MPR121 capacitive touch, 12 pads, I2C 0x5B.
+- Grove MPR121 capacitive touch, I2C 0x5B. Only 8 touch pads are usable:
+  CH0-CH3 and CH8-CH11. The board's other 2 big pads are GND, and CH4-CH7
+  are bare solder holes with nothing attached (they always read idle).
+  The board is mounted rotated 90° CCW with the GND pads at the top:
+      [GND] [GND]
+      [ 8 ] [ 3 ]
+      [ 9 ] [ 2 ]
+      [10 ] [ 1 ]
+      [11 ] [ 0 ]
+  Touches read ~200-290 above baseline, so the default threshold (12) can
+  be raised to stop neighbouring pads double-triggering.
 - Pimoroni 1.12" OLED, 128x128 mono, I2C 0x3C. Drive it with luma.oled's
   `sh1106` class at width=128, height=128, rotate=1.
 - Grove rotary encoder on GPIO12 and GPIO13. No push switch.
