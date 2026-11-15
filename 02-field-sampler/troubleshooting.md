@@ -201,6 +201,17 @@ sudo pkill -f sampler.py
 
 ## Claude Code on your laptop
 
+**`command not found: claude` right after installing it**
+
+The installer puts it in `~/.local/bin`, which your shell doesn't search by default. Add it:
+
+```bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+```
+
+If you use bash rather than zsh, use `~/.bashrc` instead.
+
 **It asks for a password on every command**
 
 The SSH key didn't take:
