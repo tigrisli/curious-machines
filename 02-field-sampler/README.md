@@ -281,7 +281,7 @@ ssh pi@field-sampler.local
 aplay -l
 ```
 
-Look for **`seeed2micvoicec`** and note its card number. The examples below use **card 0**. If yours has a different number, update the audio commands and the `CLAUDE.md` file in step 16 to match.
+Look for **`seeed2micvoicec`** and note its card number. The examples below use **card 0**. If yours has a different number, update the audio commands and the `CLAUDE.md` file in step 17 to match.
 
 ## 11. Test the sound
 
@@ -397,9 +397,23 @@ Turn it. The count should go up one way and down the other.
 
 That's every part tested. Now for the software.
 
-## 15. Install Claude Code on your laptop
+## 15. Go back to your laptop
 
-Open a new terminal **on your laptop**, not one connected to the Pi, and install Claude Code:
+Everything from here runs on your laptop, and you've been typing into the Pi since step 7. Leave the Pi first:
+
+```bash
+exit
+```
+
+That closes the SSH connection and hands the same terminal back to your laptop. You can also just open a new terminal window if you'd rather keep the Pi one open.
+
+**How to tell where you are:** look at the prompt before the cursor. If it says `pi@field-sampler`, you're on the Pi. Anything else is your laptop.
+
+You'll come back to the Pi in step 21, once the sampler is running on its own.
+
+## 16. Install Claude Code on your laptop
+
+Install Claude Code:
 
 ```bash
 curl -fsSL https://claude.ai/install.sh | bash
@@ -427,7 +441,7 @@ If that prints a version number you're set. The installer tells you the same thi
 
 Don't start Claude yet. There's some setup to do first, and it's easier outside a running session.
 
-## 16. Set up access to the Pi
+## 17. Set up access to the Pi
 
 Claude needs to reach the Pi without being asked for a password every time, and it needs to know what hardware it's dealing with. Both are quicker to sort before you start it.
 
@@ -519,7 +533,7 @@ nano ~/field-sampler/CLAUDE.md
 
 Getting these right matters more than anything else in this step. Every bit of code Claude writes from here on depends on them.
 
-## 17. Write the sampler software
+## 18. Write the sampler software
 
 Now start Claude, from inside the project folder so it can see your `CLAUDE.md`:
 
@@ -541,7 +555,7 @@ rsync -av --exclude '.git' ./ pi@field-sampler.local:~/sampler/
 ssh pi@field-sampler.local 'cd ~/sampler && python sampler.py'
 ```
 
-That's the whole mechanism. No agent on the Pi, nothing clever, just a file copy and a remote command, which is why the SSH key in step 16 had to work before any of this.
+That's the whole mechanism. No agent on the Pi, nothing clever, just a file copy and a remote command, which is why the SSH key in step 17 had to work before any of this.
 
 If a change doesn't seem to take effect, that's the first thing to check: run them yourself and see what happens, or look at what's actually on the device with `ssh pi@field-sampler.local 'ls -la ~/sampler/'`.
 
@@ -578,7 +592,7 @@ hold the button, then lets me play it back at twelve different pitches, one
 per pad, like a keyboard. the encoder changes how long each note rings for
 ```
 
-## 18. Change it
+## 19. Change it
 
 Once the basic controls work, you can add features or change how they behave. To return to your previous Claude session, run this from the project folder on your laptop:
 
@@ -605,7 +619,7 @@ show a waveform of each sound on the OLED when I tap its pad
 
 More ideas are in [prompts.md](prompts.md).
 
-## 19. Optional: use it as a USB MIDI controller
+## 20. Optional: use it as a USB MIDI controller
 
 You can also use the pads to control instruments in Ableton, Logic or other music software by setting up the Pi as a USB MIDI device. MIDI sends note and control messages; to copy the audio you’ve recorded, use the **Get your recordings** section below.
 
@@ -620,7 +634,7 @@ Then plug it in with a micro-USB cable, using the port marked **USB** rather tha
 
 This step is optional. The sampler can still record and play on its own.
 
-## 20. Take it outside
+## 21. Take it outside
 
 Once you’re happy with how it works, enable the sampler service so it starts automatically:
 
