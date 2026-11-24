@@ -27,7 +27,7 @@ or unmutes that loop. the encoder sets the master volume
 **A keyboard**
 
 ```
-record one sound, then let me play it back at twelve different pitches,
+record one sound, then let me play it back at eight different pitches,
 one per pad, like a keyboard. the encoder changes how long each note rings
 ```
 
@@ -100,7 +100,7 @@ pad down for five seconds first, and the OLED should count down while I do
 **Chop it**
 
 ```
-record one long sound, then slice it into twelve equal pieces and put one
+record one long sound, then slice it into eight equal pieces and put one
 on each pad, so I can rearrange it by tapping
 ```
 

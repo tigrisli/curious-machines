@@ -2,7 +2,7 @@
 
 ![The field sampler held in a hand: touch pads, rotary encoder, Blinkt! lights, speaker and OLED screen](images/field-sampler-hero.jpg)
 
-**Record everyday sounds and play them back on twelve touch pads.**
+**Record everyday sounds and play them back on eight touch pads.**
 
 For this second project, we're building a small sampler you can take with you. Record a door closing, a passing train, or your own voice, then use those sounds and turn them into a beat.
 
@@ -27,7 +27,7 @@ Thanks to Anthropic, the team behind [Claude](http://clau.de/tigrisli), for spon
 
 - [Raspberry Pi Zero 2 **WH**](https://thepihut.com/products/raspberry-pi-zero-2-w) (choose the version with the GPIO header already attached): £22
 - [ReSpeaker 2-Mics pHAT](https://thepihut.com/products/respeaker-2-mics-phat) (two microphones, a speaker output and a button): £12
-- [Grove 12-key capacitive touch sensor](https://thepihut.com/products/grove-12-key-capacitive-i2c-touch-sensor-v3) (twelve touch pads): £7
+- [Grove 12-key capacitive touch sensor](https://thepihut.com/products/grove-12-key-capacitive-i2c-touch-sensor-v3) (eight usable touch pads): £7
 - [Grove Encoder](https://thepihut.com/products/grove-encoder) (a rotary control): £5
 - [Pimoroni 1.12" mono OLED breakout](https://shop.pimoroni.com/products/1-12-oled-breakout) (a small screen): £17
 - [Blinkt!](https://shop.pimoroni.com/products/blinkt) (eight RGB lights): £6
@@ -365,13 +365,13 @@ Press `Ctrl+O`, then Enter to save, and `Ctrl+X` to exit. Run the test again to 
 
 ## 13. Test the pads
 
-<!-- photo touch-pads.jpg: a finger touching one of the twelve touch pads -->
+<!-- photo touch-pads.jpg: a finger touching one of the eight touch pads -->
 
 ```bash
 python3 ~/sampler/test-pads.py
 ```
 
-Touch each pad in turn. You should see `pad 0` through to `pad 11`.
+Touch each pad in turn. You should see `pad 0` to `pad 3` and `pad 8` to `pad 11`. Numbers 4 to 7 never appear, because those channels aren't wired to a pad on this board.
 
 Make a note of which physical pad gives which number. The order may not be what you'd guess from looking at the board, and you'll want to know when you're deciding what each one does.
 
@@ -598,7 +598,7 @@ left to right in time with the loop
 
 ```
 write me a python script called sampler.py that records one sound when I
-hold the button, then lets me play it back at twelve different pitches, one
+hold the button, then lets me play it back at eight different pitches, one
 per pad, like a keyboard. the encoder changes how long each note rings for
 ```
 

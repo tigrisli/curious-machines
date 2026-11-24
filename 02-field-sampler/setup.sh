@@ -101,7 +101,7 @@ mkdir -p ~/sampler/recordings
 cat > ~/sampler/CLAUDE.md <<'EOF'
 # Field Sampler
 
-A Raspberry Pi Zero 2 W with a ReSpeaker 2-Mics pHAT v2, twelve capacitive
+A Raspberry Pi Zero 2 W with a ReSpeaker 2-Mics pHAT v2, eight capacitive
 touch pads, a rotary encoder, eight RGB lights and a small mono OLED.
 There is no desktop. The Pi boots to a terminal, so anything drawn goes
 to the screen over I2C, never X11.
@@ -111,7 +111,17 @@ Hardware:
   Use plughw:0,0 at 48000Hz, 16-bit, stereo. The codec is a TLV320AIC3x.
   Check with `aplay -l` if the card number looks wrong.
 - Button on GPIO17.
-- Grove MPR121 capacitive touch, 12 pads, I2C 0x5B.
+- Grove MPR121 capacitive touch, I2C 0x5B. Only 8 touch pads are usable:
+  CH0-CH3 and CH8-CH11. The board's other 2 big pads are GND, and CH4-CH7
+  are bare solder holes with nothing attached (they always read idle).
+  The board is mounted rotated 90° CCW with the GND pads at the top:
+      [GND] [GND]
+      [ 8 ] [ 3 ]
+      [ 9 ] [ 2 ]
+      [10 ] [ 1 ]
+      [11 ] [ 0 ]
+  Touches read ~200-290 above baseline, so the default threshold (12) can
+  be raised to stop neighbouring pads double-triggering.
 - Pimoroni 1.12" OLED, 128x128 mono, I2C 0x3C. Drive it with luma.oled's
   `sh1106` class at width=128, height=128, rotate=1.
 - Grove rotary encoder on GPIO12 and GPIO13. No push switch.
@@ -151,7 +161,7 @@ d.display(img)
 print("Drawn. Look at the screen.")
 EOF
 cat > ~/sampler/test-pads.py <<'EOF'
-# Prints a line each time you touch one of the twelve pads.
+# Prints a line each time you touch one of the eight pads (0-3 and 8-11).
 import time
 import board, busio, adafruit_mpr121
 
