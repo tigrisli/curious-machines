@@ -114,17 +114,18 @@ Hardware:
 - Grove MPR121 capacitive touch, I2C 0x5B. Only 8 touch pads are usable:
   CH0-CH3 and CH8-CH11. The board's other 2 big pads are GND, and CH4-CH7
   are bare solder holes with nothing attached (they always read idle).
-  The board is mounted rotated 90° CCW with the GND pads at the top:
+  As the board is held, with the GND pads at the top:
       [GND] [GND]
-      [ 8 ] [ 3 ]
-      [ 9 ] [ 2 ]
-      [10 ] [ 1 ]
-      [11 ] [ 0 ]
+      [ 3 ] [ 8 ]
+      [ 2 ] [ 9 ]
+      [ 1 ] [10 ]
+      [ 0 ] [11 ]
   Touches read ~200-290 above baseline, so the default threshold (12) can
   be raised to stop neighbouring pads double-triggering.
 - Pimoroni 1.12" OLED, 128x128 mono, I2C 0x3C. Drive it with luma.oled's
   `sh1106` class at width=128, height=128, rotate=1.
-- Grove rotary encoder on GPIO12 and GPIO13. No push switch.
+- Grove rotary encoder on GPIO12 and GPIO13. No push switch. Create it as
+  RotaryEncoder(13, 12) so turning clockwise counts up.
 - Pimoroni Blinkt!, 8 APA102 RGB LEDs, GPIO23 and GPIO24.
   Use the `blinkt` python library.
 
@@ -183,7 +184,7 @@ cat > ~/sampler/test-encoder.py <<'EOF'
 from gpiozero import RotaryEncoder
 from signal import pause
 
-enc = RotaryEncoder(12, 13, max_steps=0)
+enc = RotaryEncoder(13, 12, max_steps=0)   # pins this way round: clockwise counts up
 enc.when_rotated = lambda: print(f"steps: {enc.steps}")
 
 print("Turn the knob. Ctrl+C to stop.")
